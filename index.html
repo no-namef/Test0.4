@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🐺 หมาป่า — ศูนย์บัญชาการผู้ดำเนินเกม</title>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- SETUP SCREEN -->
+<div id="screen-setup">
+  <header class="app-header">
+    <div class="moon-icon">🌕</div>
+    <div>
+      <div class="header-title">หมาป่า</div>
+      <div class="header-sub">ศูนย์บัญชาการผู้ดำเนินเกม</div>
+    </div>
+    <div class="header-actions">
+      <button class="btn btn-ghost" onclick="toggleRoleRef()">📖 ดูบทบาท</button>
+    </div>
+  </header>
+
+  <div style="padding:16px;max-width:1100px;margin:0 auto;">
+    <div class="card">
+      <div class="card-title">⚙️ ตั้งค่าเกม</div>
+
+      <div class="section">
+        <label class="label">จำนวนผู้เล่น</label>
+        <div class="count-row" id="count-btns"></div>
+      </div>
+
+      <div class="tabs">
+        <button class="tab active" onclick="setSetupTab('players',this)">👤 รายชื่อผู้เล่น</button>
+      </div>
+
+      <div id="setup-content" style="margin-top:16px;">
+        <div class="input-group">
+            <input type="text" id="player-input" placeholder="ใส่ชื่อผู้เล่นที่นี่...">
+            <button class="btn btn-primary" onclick="addPlayer()">เพิ่ม</button>
+        </div>
+        <div id="player-list" class="player-list"></div>
+      </div>
+
+      <button class="btn btn-primary" style="width:100%; margin-top:20px; padding:16px;" onclick="startGame()">เริ่มเกม (แจกบทบาทอัตโนมัติ)</button>
+    </div>
+  </div>
+</div>
+
+<!-- GAME SCREEN -->
+<div id="screen-game" class="hidden">
+  <div class="game-container">
+    <div class="sidebar">
+      <div class="card">
+        <div class="card-title">👥 ผู้เล่น</div>
+        <div id="player-board"></div>
+      </div>
+    </div>
+    <div class="main" id="phase-panel"></div>
+    <div class="sidebar">
+      <div class="card">
+        <div class="card-title">📜 บันทึกเกม</div>
+        <div class="log-box" id="game-log"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ROLE REFERENCE OVERLAY -->
+<div id="role-ref-overlay" class="overlay hidden">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 style="margin:0;color:var(--text)">📖 คู่มือบทบาท</h2>
+      <button class="close-btn" onclick="toggleRoleRef()">✕</button>
+    </div>
+    <div class="tabs" id="role-ref-tabs">
+      <button class="tab active" onclick="setRoleRefTab('werewolf',this)">🐺 หมาป่า</button>
+      <button class="tab" onclick="setRoleRefTab('village',this)">🏘️ ชาวบ้าน</button>
+      <button class="tab" onclick="setRoleRefTab('neutral',this)">⚗️ ฝ่ายกลาง</button>
+    </div>
+    <div class="role-ref-grid" id="role-ref-grid"></div>
+  </div>
+</div>
+
+<!-- WIN OVERLAY -->
+<div id="win-overlay" class="win-overlay hidden">
+  <div class="win-modal">
+    <div id="win-icon" style="font-size:64px;"></div>
+    <h1 id="win-title" style="margin:16px 0; font-size:32px;"></h1>
+    <p id="win-desc" style="color:var(--text3); margin-bottom:24px;"></p>
+    <button class="btn btn-primary" onclick="location.reload()">เริ่มเกมใหม่</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
